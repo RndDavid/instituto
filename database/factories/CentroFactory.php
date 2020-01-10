@@ -4,6 +4,8 @@
 
 use App\Centro;
 use Faker\Generator as Faker;
+use Illuminate\Support\Str;
+
 
 $factory->define(Centro::class, function (Faker $faker) {
     return [
@@ -11,6 +13,5 @@ $factory->define(Centro::class, function (Faker $faker) {
         'nombre' => $faker->company,
         'web' => $faker->url,
         'verificado' => $faker->boolean,
-        'remember_token' => Str::random(10),
     ];
 });
