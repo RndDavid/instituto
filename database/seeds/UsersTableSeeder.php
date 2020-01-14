@@ -19,7 +19,6 @@ class UsersTableSeeder extends Seeder
                 ->each(function ($user) {
                 $user->centros()->save(factory(App\Centro::class)->make());
             });
-
             $users = factory(App\User::class, 97)->create();
         }
     }
