@@ -12,9 +12,11 @@ class Nivel extends Model
         return $this->hasMany('\App\Nivel','nivelsuperior');
     }
 
-    public function nivelPadre() {
+    public function nivelObject() {
         return $this->belongsTo('\App\Nivel','nivelsuperior');
     }
 
-
+    public function grupos(){
+        return $this->hasMany('\App\Grupo','nivel');
+    }
 }
