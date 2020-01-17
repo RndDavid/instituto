@@ -26,7 +26,7 @@ class AddForeignKeyToNivelesTable extends Migration
     public function down()
     {
         Schema::table('niveles', function (Blueprint $table) {
-            $table->dropForeign(['nivelsuperior']);
+            $table->dropForeign('niveles_nivelsuperior_foreign');
         });
     }
 }

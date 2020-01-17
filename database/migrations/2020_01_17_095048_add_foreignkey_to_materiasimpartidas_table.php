@@ -31,6 +31,14 @@ class AddForeignkeyToMateriasimpartidasTable extends Migration
     {
         Schema::table('materiasimpartidas', function (Blueprint $table) {
             $table->dropForeign(['docente','grupo','materia']);
+
+            
+            /* $table->dropForeign('materiasimpartidas_docente_foreign');
+            $table->dropForeign('materiasimpartidas_grupo_foreign');
+            $table->dropForeign('materiasimpartidas_materia_foreign');
+ */
+
+
         });
     }
 }
