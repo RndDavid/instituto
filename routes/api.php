@@ -53,9 +53,10 @@ Route::middleware('auth:api')->group(function() {
 
     Route::apiResource('materiamatriculadas', 'API\MateriamatriculadaController');
 
-    Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
-        'materiasimpartidas' => 'materiaimpartida'
-    ]);
+                Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
+                    'materiasimpartidas' => 'materiaimpartida'
+                    ]);
+                });
 
     Route::apiResource('peticionesinformacion', 'API\PeticioninformacionController')->parameters([
         'peticionesinformacion' => 'peticioninformacion'
