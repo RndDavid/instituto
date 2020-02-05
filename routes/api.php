@@ -15,12 +15,17 @@ use Tqdev\PhpCrudApi\Config;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::apiResource('respuestasprofesores', 'API\RespuestaprofesorController')->parameters([
+    'respuestasprofesores' => 'respuestaprofesor'
+]);/* Esto es temporal hasta hacer rama con policys */
+
+
 Route::put('tutorizados/verifica/{tutor_id}/{token}', 'API\TutorizadoController@verificar');
 
+Route::middleware('auth:api')->group(function () {
 
-Route::middleware('auth:api')->group(function() {
-
-// Rutas adicionales a las de los Resources
+    // Rutas adicionales a las de los Resources
     Route::get('users/profile/{user_id}', 'API\UserController@profile');
 
     Route::put('centro/verifica/{centro_id}', 'API\CentroController@verificado');
@@ -53,10 +58,9 @@ Route::middleware('auth:api')->group(function() {
 
     Route::apiResource('materiamatriculadas', 'API\MateriamatriculadaController');
 
-                Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
-                    'materiasimpartidas' => 'materiaimpartida'
-                    ]);
-                });
+    Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
+        'materiasimpartidas' => 'materiaimpartida'
+    ]);
 
     Route::apiResource('peticionesinformacion', 'API\PeticioninformacionController')->parameters([
         'peticionesinformacion' => 'peticioninformacion'
@@ -82,5 +86,3 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     $response = $api->handle($request);
     return $response;
 })->where('any', '.*');
-
-

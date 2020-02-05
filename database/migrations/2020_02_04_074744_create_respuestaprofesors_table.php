@@ -15,8 +15,8 @@ class CreateRespuestaprofesorsTable extends Migration
     {
         Schema::create('respuestasprofesores', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('profesor');
-            $table->bigInteger('peticionesinformacion_id');
+            $table->bigInteger('profesor')->unsigned();
+            $table->bigInteger('peticionesinformacion_id')->unsigned();
             $table->tinyInteger('comportamiento');
             $table->tinyInteger('nivelacademico');
             $table->text('observaciones')->nullable();
