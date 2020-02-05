@@ -14,6 +14,12 @@ class PeticioninformacionResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        //return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'tutorGrupo' => $this->tutorGrupoObject,
+            'alumno' => $this->alumnoObject,
+            'observaciones' => $this->observaciones,
+        ];
     }
 }
