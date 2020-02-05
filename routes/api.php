@@ -16,14 +16,15 @@ use Tqdev\PhpCrudApi\Config;
 |
 */
 
+//TODO añadir al auth:api al crear el Policy
 Route::apiResource('respuestasprofesores', 'API\RespuestaprofesorController')->parameters([
     'respuestasprofesores' => 'respuestaprofesor'
-]);/* Esto es temporal hasta hacer rama con policys */
-
+]);
+///////////
 
 Route::put('tutorizados/verifica/{tutor_id}/{token}', 'API\TutorizadoController@verificar');
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:api')->group(function() {
 
     // Rutas adicionales a las de los Resources
     Route::get('users/profile/{user_id}', 'API\UserController@profile');
@@ -35,7 +36,6 @@ Route::middleware('auth:api')->group(function () {
     ]);
 
     Route::apiResource('tutorizados', 'API\TutorizadoController');
-
 
     Route::apiResource('centros', 'API\CentroController')->parameters([
         'centros' => 'centro'
@@ -62,7 +62,13 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('materiasimpartidas', 'API\MateriaimpartidaController')->parameters([
         'materiasimpartidas' => 'materiaimpartida'
     ]);
-});
+
+    Route::apiResource('peticionesinformacion', 'API\PeticioninformacionController')->parameters([
+        'peticionesinformacion' => 'peticioninformacion'
+    ]);
+
+
+}); // Fin grupo api:auth
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $databaseConnection = config('database.default');
