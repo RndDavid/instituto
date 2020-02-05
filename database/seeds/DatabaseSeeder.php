@@ -20,6 +20,8 @@ class DatabaseSeeder extends Seeder
         $this->call(GruposTableSeeder::class);
         $this->call(MateriasimpartidasTableSeeder::class);
         $this->call(NivelesTableSeeder::class);
+        $this->call(PeticionesinformacionTableSeeder::class);
+        $this->call(RespuestaprofesorTableSeeder::class);
         Schema::enableForeignKeyConstraints();
     }
 }
