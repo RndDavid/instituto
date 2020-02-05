@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\PeticioninformacionResource;
 use App\Peticioninformacion;
 use Illuminate\Http\Request;
 
 class PeticioninformacionController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Peticioninformacion::class, 'peticioninformacion');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,7 @@ class PeticioninformacionController extends Controller
      */
     public function index()
     {
-        //
+        return PeticioninformacionResource::collection(Peticioninformacion::paginate(10));
     }
 
     /**
@@ -26,7 +33,8 @@ class PeticioninformacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $peticioninformacion = Peticioninformacion::create(json_decode($request->getContent(),true));
+        return new PeticioninformacionResource($peticioninformacion);
     }
 
     /**
@@ -37,7 +45,7 @@ class PeticioninformacionController extends Controller
      */
     public function show(Peticioninformacion $peticioninformacion)
     {
-        //
+        return new PeticioninformacionResource($peticioninformacion);
     }
 
     /**
@@ -49,7 +57,9 @@ class PeticioninformacionController extends Controller
      */
     public function update(Request $request, Peticioninformacion $peticioninformacion)
     {
-        //
+        $peticioninformacion->update(json_decode($request->getContent(),true));
+
+        return new PeticioninformacionResource($peticioninformacion);
     }
 
     /**
@@ -60,6 +70,6 @@ class PeticioninformacionController extends Controller
      */
     public function destroy(Peticioninformacion $peticioninformacion)
     {
-        //
+        $peticioninformacion->delete();
     }
 }
