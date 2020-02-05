@@ -15,12 +15,18 @@ use Tqdev\PhpCrudApi\Config;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::put('tutorizados/verifica/{tutor_id}/{token}', 'API\TutorizadoController@verificar');
 
+//TODO añadir al auth:api al crear el Policy
+Route::apiResource('respuestasprofesores', 'API\RespuestaprofesorController')->parameters([
+    'respuestasprofesores' => 'respuestaprofesor'
+]);
+///////////
+
+Route::put('tutorizados/verifica/{tutor_id}/{token}', 'API\TutorizadoController@verificar');
 
 Route::middleware('auth:api')->group(function() {
 
-// Rutas adicionales a las de los Resources
+    // Rutas adicionales a las de los Resources
     Route::get('users/profile/{user_id}', 'API\UserController@profile');
 
     Route::put('centro/verifica/{centro_id}', 'API\CentroController@verificado');
@@ -64,8 +70,6 @@ Route::middleware('auth:api')->group(function() {
 
 }); // Fin grupo api:auth
 
-
-
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $databaseConnection = config('database.default');
     $databaseBase = 'database.connections.' . $databaseConnection . '.';
@@ -81,5 +85,3 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     $response = $api->handle($request);
     return $response;
 })->where('any', '.*');
-
-
