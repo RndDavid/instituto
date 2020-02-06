@@ -157,6 +157,10 @@ class User extends Authenticatable {
 
     }
 
+    public function isTutorAlumno(Grupo $grupo = null){
+        return true;
+    }
+
     public function isCreadorGrupo(Grupo $grupo = null)
     {
         $booleano = true;

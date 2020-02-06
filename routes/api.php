@@ -16,9 +16,6 @@ use Tqdev\PhpCrudApi\Config;
 |
 */
 
-Route::apiResource('respuestasprofesores', 'API\RespuestaprofesorController')->parameters([
-    'respuestasprofesores' => 'respuestaprofesor'
-]);/* Esto es temporal hasta hacer rama con policys */
 
 
 Route::put('tutorizados/verifica/{tutor_id}/{token}', 'API\TutorizadoController@verificar');
@@ -65,7 +62,10 @@ Route::middleware('auth:api')->group(function () {
     Route::apiResource('peticionesinformacion', 'API\PeticioninformacionController')->parameters([
         'peticionesinformacion' => 'peticioninformacion'
     ]);
-
+    
+    Route::apiResource('respuestasprofesores', 'API\RespuestaprofesorController')->parameters([
+        'respuestasprofesores' => 'respuestaprofesor'
+    ]);
 
 }); // Fin grupo api:auth
 
