@@ -26,8 +26,6 @@ class Grupo extends Model
         return $this->hasMany('App\Matricula', 'grupo');
     }
 
-
-
     public function materiasmatriculadas()
     {
         return $this->hasMany('App\Materiamatriculada', 'grupo');
@@ -42,4 +40,23 @@ class Grupo extends Model
     {
         return $this->belongsTo('App\Nivel', 'nivel');
     }
+
+    public function docentes(){
+        return $this->belongsToMany(
+            'App\User', //Tabla destino
+            'materiasimpartidas', //Tabla pivote
+            'grupo', //FK pivote con origen
+            'docente' //FK pivote con destino
+        );
+    }
+
+    public function alumnosMatriculados(){
+        return $this->belongsToMany(
+            'App\User', //Tabla destino
+            'materiasmatriculadas', //Tabla pivote
+            'grupo', //FK pivote con origen
+            'alumno' //FK pivote con destino
+        );
+    }
+
 }
