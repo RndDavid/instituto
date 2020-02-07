@@ -20,7 +20,7 @@ use Tqdev\PhpCrudApi\Config;
 
 Route::put('tutorizados/verifica/{tutor_id}/{token}', 'API\TutorizadoController@verificar');
 
-Route::middleware('auth:api')->group(function() {
+Route::middleware('auth:api')->group(function () {
 
     // Rutas adicionales a las de los Resources
     Route::get('users/profile/{user_id}', 'API\UserController@profile');
