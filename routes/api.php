@@ -69,8 +69,6 @@ Route::middleware('auth:api')->group(function () {
 
 }); // Fin grupo api:auth
 
-
-
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $databaseConnection = config('database.default');
     $databaseBase = 'database.connections.' . $databaseConnection . '.';
