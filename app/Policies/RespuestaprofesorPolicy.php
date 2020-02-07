@@ -42,7 +42,7 @@ class RespuestaprofesorPolicy
      */
     public function create(User $user)
     {
-        return $user->isTutorAlumno()
+        return $user->isTutorGrupo()
             ? Response::allow()
             : Response::deny('No está autorizado para realizar esta acción');
     }

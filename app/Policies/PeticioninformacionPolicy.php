@@ -42,7 +42,7 @@ class PeticioninformacionPolicy
      */
     public function create(User $user)
     {
-        return $user->isTutorGrupo()
+        return $user->isTutorAlumno()
             ? Response::allow()
             : Response::deny('No está autorizado para realizar esta acción');
     }
