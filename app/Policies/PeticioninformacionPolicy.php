@@ -5,6 +5,7 @@ namespace App\Policies;
 use App\Peticioninformacion;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Auth\Access\Response;
 
 class PeticioninformacionPolicy
 {
@@ -41,7 +42,9 @@ class PeticioninformacionPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->isTutorGrupo()
+            ? Response::allow()
+            : Response::deny('No está autorizado para realizar esta acción');
     }
 
     /**
@@ -53,7 +56,9 @@ class PeticioninformacionPolicy
      */
     public function update(User $user, Peticioninformacion $peticioninformacion)
     {
-        return true;
+        return $user->id === $peticioninformacion->tutorGrupo
+            ? Response::allow()
+            : Response::deny('No está autorizado para realizar esta acción');
     }
 
     /**
@@ -65,7 +70,9 @@ class PeticioninformacionPolicy
      */
     public function delete(User $user, Peticioninformacion $peticioninformacion)
     {
-        return true;
+        return $user->id === $peticioninformacion->tutorGrupo
+            ? Response::allow()
+            : Response::deny('No está autorizado para realizar esta acción');
     }
 
     /**
